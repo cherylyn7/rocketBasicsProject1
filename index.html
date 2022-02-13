@@ -1,0 +1,196 @@
+<!--  All HTML files begin with the following line: -->
+<!DOCTYPE html>
+<!-- This indicates that the rest of the lines that follow are to be interpreted as HTML. It tells the browser about what document type to expect. -->
+
+<!-- All text enclosed in angled brackets are known as HTML element tags. There are usually, but not always, starting and closing element "tags", each representing a HTML element.
+The <html> element is known as the root element of a HTML page. All other elements are encased within it. -->
+<html>
+  <!-- The <head> element contains meta information about the HTML page, information that is not rendered or displayed by the browser -->
+  <head>
+    <!-- The <title> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab) and is the default name given to a bookmark of a webpage. -->
+    <title>Cherylyn's Code</title>
+    <!-- The <style> element contains information relating to the layout and style of the webpage. The syntax within a <style> tag is referred to as CSS - Cascading Style Sheets. -->
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+        margin-left: 30px;
+        margin-right: 30px;
+      }
+
+      #header {
+        text-align: center;
+      }
+
+      #container {
+        background-color: plum;
+        margin: 40px auto;
+        max-width: 800px;
+        padding: 38px 31px;
+        border-radius: 12px;
+        border-style: dotted;
+        border-color: red;
+        border-width: 3px;
+      }
+
+      input {
+        font-size: 21px;
+        line-height: 33px;
+        margin: 0 0 23px 0;
+        padding: 0 9px;
+        border-radius: 12px;
+        width: 100%;
+      }
+
+      button {
+        font-size: 21px;
+        line-height: 33px;
+        margin: 0 0 23px 0;
+        padding: 0 10px;
+        border-radius: 12px;
+        cursor:pointer;
+      }
+
+      .collapsible {
+        background-color:blueviolet;
+        color:aliceblue;
+        cursor:pointer;
+        font-size: 21px;
+        line-height: 33px;
+        margin: 0 0 23px 0;
+        padding: 0 10px;
+      }
+
+      .active, .collapsible:hover{
+        background-color: purple;
+      }
+
+      .morecontent {
+        display: none;
+        overflow: hidden;
+        background-color: goldenrod;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 12px;
+        border-style: solid;
+        border-color: white;
+        max-width: 800px;
+      }
+
+      #output-div {
+        background-color: goldenrod;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 12px;
+        border-style: solid;
+        border-color: white;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <!-- The <body> element defines the document's body, and is a container for all the visible contents that will be rendered by the browser.  -->
+  <body>
+    <!-- The <h1> element defines a large heading. There are 6 pre-set header elements, <h1> to <h6> -->
+    <h1 id="header">
+      LET'S PLAY:<br /><br />
+      Scissors✂️, Paper🧾, Stone!💎
+    </h1>
+    <!-- The <div> tag defines a division or a section in an HTML document, and is commonly use as a "container" for nested HTML elements. -->
+    <br />
+    <center>
+    <button onClick="window.location.reload();">Start Over</button></br>
+    <button type="button" class ="collapsible">Rules for Basic Version</button>
+
+    <div class="morecontent">
+      Welcome to the Basic Version of Scissors, Paper, Stone!<br><br>
+      <b><u>Here are the rules:</b></u><br>
+      <br>Scissors beats Paper.<br>
+      Paper beats Stone.<br>
+      Stone beats Scissors.<br></div>
+    
+      <button type="button" class ="collapsible">Rules for Korean Version</button>
+      
+      <div class="morecontent">
+      Welcome to the Korean version of Scissors, Paper, Stone: 묵찌빠 (Muk Jji Ppa)!<br>
+      <br>
+      <b><u>Here are the rules:</b></u><br>
+      <br>
+      <b>ENTER SHOWDOWN WARS TO WIN</b><br>
+      1) You enter a SHOWDOWN WAR when you and the computer play the same hand and tie.<br>
+      2) The winner of the SHOWDOWN WAR will be determined by who was the latest winner of the regular battle mode in the previous rounds played.<br>
+      3) The basic rules apply in regular battle mode to determine who has obtained the winning condition when a SHOWDOWN WAR comes into play.<br>
+      <br>
+      <i> Scissors beats Paper<br>
+      Paper beats Stone<br>
+      Stone beats Scissors</i><br></div>
+</center>
+
+    <div id="container">
+      <!-- The <p> tag defines a paragraph element. -->
+      <p>
+        <h2 id="body">GAMEPLAY AREA</h2>
+        <b
+          >Ready to begin?<br />
+          First you enter your name<br/>
+          Then you play the game.</b
+        ><br />
+      </p>
+      <!-- The self-closing <input /> tag represents a field for a user to enter input. -->
+      <input id="input-field" />
+      <!-- The self-closing <br /> tag represents a line break - a line's worth of spacing before dispalying the next element. -->
+      <br />
+      <!-- The <button> tag represents.. you guessed it! a button. -->
+      <button id="submit-button">Let's go!</button>
+      <p><b>Drumroll...</b></p>
+      <div id="output-div"></div>
+    </div>
+    <!-- Everything below this is incorporating JavaScript programming logic into the webpage. -->
+    <!-- The script tag encloses JavaScript syntax for the browser to interpret programtically -->
+    <!-- The following line imports all code written in the script.js file -->
+
+
+    <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+    </script>
+
+    <script src="script.js"></script>
+    <!-- Define button click functionality -->
+    <script>
+      // Declare and define a variable that represents the Submit Button
+      var button = document.querySelector("#submit-button");
+      // When the submit button is clicked, access the text entered by the user in the input field
+      // And pass it as an input parameter to the main function as defined in script.js
+      button.addEventListener("click", function () {
+        // Set result to input value
+        var input = document.querySelector("#input-field");
+        // Store the output of main() in a new variable
+        var result = main(input.value);
+
+        // Display result in output element
+        var output = document.querySelector("#output-div");
+        output.innerHTML = result;
+
+        // Reset input value
+        input.value = "";
+      });
+    </script>
+  </body>
+</html>
